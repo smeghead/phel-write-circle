@@ -1,8 +1,12 @@
 (ns app\canvas)
 
 (defstruct Canvas [width])
+(defstruct Position [x y])
 
 (defn create [width]
   (Canvas width))
 
+(defn get-center [canvas]
+  (let [half (php/intval (/ (dec (canvas :width)) 2))]
+    (Position half half)))
 

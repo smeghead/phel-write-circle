@@ -6,4 +6,11 @@
 (deftest create-canvas
   (let [canvas (canvas/create 100)]
     (is (canvas/Canvas? canvas))
-    (is (= (canvas :width) 100))))
+    (is (= 100 (canvas :width)))))
+
+(deftest canvas-center
+  (let [canvas (canvas/create 100)
+        center (canvas/get-center canvas)]
+    (is (canvas/Position? center))
+    (is (= 49 (center :x)))
+    (is (= 49 (center :y)))))
