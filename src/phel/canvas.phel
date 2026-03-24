@@ -10,3 +10,9 @@
   (let [half (php/intval (/ (dec (canvas :width)) 2))]
     (Position half half)))
 
+(defn answers [canvas y]
+  (let [center (get-center canvas)
+        r (center :y)
+        answer (php/intval (php/sqrt (- (** r 2) (** (- y r) 2))))]
+    [(Position (- r answer) y) (Position (+ r answer) y)]))
+    

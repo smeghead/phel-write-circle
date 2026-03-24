@@ -14,3 +14,20 @@
     (is (canvas/Position? center))
     (is (= 49 (center :x)))
     (is (= 49 (center :y)))))
+
+(deftest canvas-answers0
+  (let [canvas (canvas/create 100)
+        answers (canvas/answers canvas 0)
+        answer1 (answers 0)]
+    (is (canvas/Position? answer1))
+    (is (= (canvas/Position 49 0) answer1))))
+
+(deftest canvas-answers-center
+  (let [canvas (canvas/create 100)
+        answers (canvas/answers canvas 49)
+        answer1 (answers 0)
+        answer2 (answers 1)]
+    (is (canvas/Position? answer1))
+    (is (= (canvas/Position 0 49) answer1))
+    (is (canvas/Position? answer2))
+    (is (= (canvas/Position 98 49) answer2))))
