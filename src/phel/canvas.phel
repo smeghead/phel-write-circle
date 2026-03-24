@@ -1,0 +1,8 @@
+(ns app\canvas)
+
+(defstruct Canvas [width])
+
+(defn create [width]
+  (Canvas width))
+
+

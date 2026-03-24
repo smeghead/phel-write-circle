@@ -1,0 +1,9 @@
+(ns test\app\core
+  (:require phel\test :refer [deftest is])
+  (:require app\canvas))
+
+
+(deftest create-canvas
+  (let [canvas (canvas/create 100)]
+    (is (canvas/Canvas? canvas))
+    (is (= (canvas :width) 100))))

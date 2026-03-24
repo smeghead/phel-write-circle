@@ -1,0 +1,19 @@
+{
+    "name": "smeghead/phel-write-circle",
+    "type": "project",
+    "require": {
+        "phel-lang/phel-lang": "^0.29.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Smeghead\\PhelWriteCircle\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "smeghead",
+            "email": "smeghead7@gmail.com"
+        }
+    ]
+}
