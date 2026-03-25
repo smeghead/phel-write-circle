@@ -1,18 +1,21 @@
 (ns app\canvas)
 
-(defstruct Canvas [width])
+(defstruct Canvas [width ratio])
 (defstruct Position [x y])
 
-(defn create [width]
-  (Canvas width))
+(defn create [width ratio]
+  (Canvas width ratio))
 
 (defn get-center [canvas]
-  (let [half (php/intval (/ (dec (canvas :width)) 2))]
-    (Position half half)))
+  (let [x (php/intval (php/round (/ (dec (canvas :width)) 2)))
+        y (php/intval (php/round (/ x (canvas :ratio))))]
+    (Position x y)))
 
 (defn answers [canvas y]
   (let [center (get-center canvas)
-        r (center :y)
-        answer (php/intval (php/sqrt (- (** r 2) (** (- y r) 2))))]
+        r (center :x)
+        answer (php/intval (php/round (php/sqrt (- (** r 2) (** (- y r) 2)))))]
     [(Position (- r answer) y) (Position (+ r answer) y)]))
     
+(defn next-y [canvas y]
+  (php/intval (php/round (+ y (canvas :ratio)))))

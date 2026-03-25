@@ -4,18 +4,16 @@
 
 (defn main []
   (let [width (php/exec "stty size | cut -d\" \" -f2")
-        c (canvas/create width)
+        c (canvas/create 80 2.1)
         center (canvas/get-center c)]
-(println width)
     (loop [y 0]
-      (if (< y (c :width))
+      (if (<= y (c :width))
         (let [answers (canvas/answers c y)
               x1 (get-in answers [0 :x])
               x2 (get-in answers [1 :x])]
           (if (= x1 x2)
             (println (str (str/repeat " " x1) "*"))
             (println (str (str/repeat " " x1) "*" (str/repeat " " (- x2 x1)) "*")))
-(recur (inc y))
-          )))))
+          (recur (canvas/next-y c y)))))))
 
 (main)
